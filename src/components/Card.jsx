@@ -9,6 +9,12 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    borderRadius: 10,
+    // borderColor: '',
+    marginLeft: 300,
+    marginRight: 300,
+    marginTop: 10,
+    marginBottom: 10,
   },
   bullet: {
     display: 'inline-block',
@@ -30,17 +36,18 @@ export default function OutlinedCard(props) {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
+        {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
           Word of the Day
-        </Typography>
+        </Typography> */}
         <Typography variant="h5" component="h2">
           <a
           href={'https://youglish.com/pronounce/' + props.word + '/english?'}
           >{props.word}</a>
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <br />
+        {/* <Typography className={classes.pos} color="textSecondary">
           adjective
-        </Typography>
+        </Typography> */}
         <Typography variant="body2" component="p">
           {props.definition}
           <br />

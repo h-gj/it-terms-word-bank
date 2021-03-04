@@ -1,46 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import Card from './components/Card'
 import React from 'react'
 import axios from 'axios'
-// import PrimarySearchAppBar from './components/SearchBar'
-import Pagination from "react-js-pagination";
-// import "bootstrap/less/bootstrap.less";
-
-
-
-function debounce(method, wait, immediate) {
-  let timeout
-  let result
-  let debounced = function(...args) {
-    return new Promise(resolve => {
-      let context = this
-      if (timeout) {
-        clearTimeout(timeout)
-      }
-      if (immediate) {
-        let callNow = !timeout
-        timeout = setTimeout(() => {
-          timeout = null
-        }, wait)
-        if (callNow) {
-          result = method.apply(context, args)
-          resolve(result)
-        }
-      } else {
-        timeout = setTimeout(() => {
-          result = method.apply(context, args)
-          resolve(result)
-        }, wait)
-      }
-    })
-  }
-  debounced.cancel = function() {
-    clearTimeout(timeout)
-    timeout = null
-  }
-  return debounced
-}
+import TextField from '@material-ui/core/TextField';
 
 
 class App extends React.Component {
@@ -50,7 +12,6 @@ class App extends React.Component {
       'terms': [],
       activePage: 1
     };
-    this.deboundHandleSearch = debounce(this.handleSearch, 5, true)
   }
 
   componentDidMount () {
@@ -84,33 +45,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-      {/* <PrimarySearchAppBar onChange={this.handleSearch}/> */}
-      <embed src="http://dict.youdao.com/dictvoice?audio=python"/>
-      <input type='text' placeholder='Search keyword'
-      
-
-        onChange={this.handleSearch}
-      />
+        <TextField id="outlined-basic" style={{width: 825}} onChange={this.handleSearch} label="Enter keyword" variant="outlined" />
         {
-          this.state.terms.slice(0, 10).map(
+          this.state.terms.slice(0, 10).map (
           item => (<div>
 
             <Card word={item.word} definition={item.definition}/> <br />
           </div>)
         )
         }
-
-        <div>
-        <Pagination
-          activePage={this.state.activePage}
-          itemsCountPerPage={10}
-          totalItemsCount={450}
-          pageRangeDisplayed={5}
-          onChange={this.handlePageChange.bind(this)}
-        />
-      </div>
-
-        
       </div>
     );
   }   
