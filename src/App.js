@@ -32,7 +32,7 @@ class App extends React.Component {
 
   handleSearch = (e) => {
     const search = e.target.value;
-    axios.get('http://localhost:3000/' + '?search=' + search).then(
+    axios.get('http://hugaojian.com:8888/' + '?search=' + search).then(
       (res, err) => {
           const terms = res.data;
           this.setState({'terms': terms})
